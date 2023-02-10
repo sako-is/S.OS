@@ -1,4 +1,4 @@
-#Building
+# Building
 
 Clone limine binaries into `limine/` and run `make -C limine`
 
