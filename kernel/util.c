@@ -8,3 +8,7 @@ size_t strlen(const char* str) {
 
     return len;
 }
+
+uint64 uRound(float64 x) {
+    return (uint64)(x + 0.5);
+}

@@ -87,7 +87,7 @@ limine.h:
 
 # Link rules for the final kernel executable.
 $(KERNEL): $(OBJ)
-	$(LD) $(OBJ) $(LDFLAGS) -o $@
+	$(LD) $(OBJ) $(LDFLAGS) kernel/tamsyn.o -o $@
 
 # Include header dependencies.
 -include $(HEADER_DEPS)

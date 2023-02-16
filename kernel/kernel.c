@@ -1,39 +1,26 @@
 #include <kernel/kernel.h>
+#include <kernel/print.h>
 #include <kernel/terminal.h>
-// #include <limine/limine.h>
+
+#include <limine/limine.h>
 
 #include <defines.h>
 
-// static volatile struct limine_terminal_request terminal_request = {
-//     .id = LIMINE_TERMINAL_REQUEST,
-//     .revision = 0
-// };
-// static void kMain(void);
-
-// struct limine_entry_point_request entry_point_request = {
-//     .id = LIMINE_ENTRY_POINT_REQUEST,
-//     .revision = 0, .response = NULL,
-
-//     .entry = kMain
-// };
+volatile struct limine_framebuffer_request fb_request = {
+    .id = LIMINE_FRAMEBUFFER_REQUEST,
+    .revision = 0
+};
 
 static void Done(void) {
-    for(;;) { }
+    for(;;) { __asm__("hlt"); }
 }
 
 void kMain(void) {
-	terminalInit();
-    terminalPrint("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-
-    // if (terminal_request.response == NULL
-    //  || terminal_request.response->terminal_count < 1) {
-    //     Done();
-    // }
- 
-    // // We should now be able to call the Limine terminal to print out
-    // // a simple "Hello World" to screen.
-    // struct limine_terminal *terminal = terminal_request.response->terminals[0];
-    // terminal_request.response->write(terminal, "Hello World", 11);
+    Terminal term = terminalInit();
+    TTYPrintStr(&term, "Here's some text to test the terminal :) ", 0x3035d4);
+    TTYPrintStr(&term, "Here's another one aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 0xabd430);
+    // TTYPrintStr(&term, "hi", 0xffffff);
+    // printStr("А сейчас проверяю поддержку киррилического алфавита", 10, 28, 0xc4614c);
 
     Done();
 }
