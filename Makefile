@@ -81,13 +81,16 @@ override HEADER_DEPS := $(CFILES:.c=.d) $(ASFILES:.S=.d)
 # Default target.
 .PHONY: all
 all: $(KERNEL)
-
+	cp -v kernel.elf limine.cfg limine/limine.sys limine/limine-cd.bin limine/limine-cd-efi.bin iso/
+	xorriso -as mkisofs -b limine-cd.bin -no-emul-boot -boot-load-size 4 -boot-info-table --efi-boot limine-cd-efi.bin -efi-boot-part --efi-boot-image --protective-msdos-label iso -o image.iso
+	./limine/limine-deploy image.iso
+	
 limine.h:
 	curl https://raw.githubusercontent.com/limine-bootloader/limine/trunk/limine.h -o include/limine/$@
 
 # Link rules for the final kernel executable.
 $(KERNEL): $(OBJ)
-	$(LD) $(OBJ) $(LDFLAGS) kernel/tamsyn.o -o $@
+	$(LD) $(OBJ) $(LDFLAGS) bin/tamsyn.o -o $@
 
 # Include header dependencies.
 -include $(HEADER_DEPS)

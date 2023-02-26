@@ -22,7 +22,8 @@ void printRectangle(int width, int height, uint32 x, uint32 y, int color);
 
 void fillScreen(int color);
 
-void printChar(uint32 c, uint32 x, uint32 y, int color);
+void printChar(char c, uint32 x, uint32 y, int color);
+void printInt(int intg, int base, uint32 x, uint32 y, int color);
 void printStr(const char* str, uint32 x, uint32 y, int color);
 
 void printCharW(unsigned char c, uint32 x, uint32 y, int color);
