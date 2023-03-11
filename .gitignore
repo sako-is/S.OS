@@ -1,4 +1,4 @@
-limine/
+./limine/**
 bin/
 **/*.o
 .vscode/

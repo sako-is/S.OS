@@ -1,6 +1,8 @@
 #include <kernel/kernel.h>
-#include <kernel/print.h>
-#include <kernel/terminal.h>
+#include <kernel/print/printbasic.h>
+#include <kernel/print/print.h>
+#include <kernel/arch/common/hal.h>
+#include <kernel/util/util.h>
 
 #include <limine/limine.h>
 
@@ -12,28 +14,14 @@ volatile struct limine_framebuffer_request fb_request = {
 };
 
 static void Done(void) {
-	for(;;) { __asm__("hlt"); }
+	for(;;) { asm("hlt"); }
 }
 
 void kMain(void) {
-	#ifdef x86_64
-	setupGDT();
-	#endif
+	fillScreen(darkblue);
+	printLogo; printk("\n");
 
-	// ERRORK("testing error\n");
-
-	tPrintStr(" __    __                                                              __         ______    ______   \n", 0xffffff);
-	tPrintStr("/  |  /  |                                                            /  |       /      \\  /      \\ \n", 0xffffff);
-	tPrintStr("$$ |  $$ | _______   _______    ______   _____  ____    ______    ____$$ |      /$$$$$$  |/$$$$$$  |\n", 0xffffff);
-	tPrintStr("$$ |  $$ |/       \\ /       \\  /      \\ /     \\/    \\  /      \\  /    $$ |      $$ |  $$ |$$ \\__$$/ \n", 0xffffff);
-	tPrintStr("$$ |  $$ |$$$$$$$  |$$$$$$$  | $$$$$$  |$$$$$$ $$$$  |/$$$$$$  |/$$$$$$$ |      $$ |  $$ |$$      \\ \n", 0xffffff);
-	tPrintStr("$$ |  $$ |$$ |  $$ |$$ |  $$ | /    $$ |$$ | $$ | $$ |$$    $$ |$$ |  $$ |      $$ |  $$ | $$$$$$  |\n", 0xffffff);
-	tPrintStr("$$ \\__$$ |$$ |  $$ |$$ |  $$ |/$$$$$$$ |$$ | $$ | $$ |$$$$$$$$/ $$ \\__$$ |      $$ \\__$$ |/  \\__$$ |\n", 0xffffff);
-	tPrintStr("$$    $$/ $$ |  $$ |$$ |  $$ |$$    $$ |$$ | $$ | $$ |$$       |$$    $$ |      $$    $$/ $$    $$/ \n", 0xffffff);
-	tPrintStr(" $$$$$$/  $$/   $$/ $$/   $$/  $$$$$$$/ $$/  $$/  $$/  $$$$$$$/  $$$$$$$/        $$$$$$/   $$$$$$/  \n", 0xffffff);
-
-	// tPrintF(&style, 0xffffff, "Hello World %% %i %s %c %x", 10, "it works?", 'k', 0xfff);
-	// printStr("А сейчас проверяю поддержку киррилического алфавита", 10, 28, 0xc4614c);
+	initHAL();
 
 	Done();
 }

@@ -25,7 +25,7 @@ $(eval $(call DEFAULT_VAR,CC,cc))
 $(eval $(call DEFAULT_VAR,LD,ld))
 
 # User controllable CFLAGS.
-CFLAGS ?= -g -O2 -pipe -Wall -Wextra
+CFLAGS ?= -g -O3 -pipe -Wall -Wextra
 
 # User controllable preprocessor flags. We set none by default.
 CPPFLAGS ?=
@@ -86,7 +86,7 @@ all: $(KERNEL)
 	./limine/limine-deploy image.iso
 	
 limine.h:
-	curl https://raw.githubusercontent.com/limine-bootloader/limine/trunk/limine.h -o include/limine/$@
+		# curl https://raw.githubusercontent.com/limine-bootloader/limine/trunk/limine.h -o include/limine/$@
 
 # Link rules for the final kernel executable.
 $(KERNEL): $(OBJ)

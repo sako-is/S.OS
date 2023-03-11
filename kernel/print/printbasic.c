@@ -1,7 +1,7 @@
-#include <kernel/print.h>
+#include <kernel/print/printbasic.h>
 #include <kernel/kernel.h>
-#include <kernel/terminal.h>
-#include <kernel/util.h>
+#include <kernel/print/print.h>
+#include <kernel/util/util.h>
 
 #include <defines.h>
 
@@ -34,13 +34,13 @@ void fillScreen(int color) {
 	printRectangle(fb_request.response->framebuffers[0]->height, fb_request.response->framebuffers[0]->pitch, 0, 0, color);
 }
 
-void printChar(char c, uint32 x, uint32 y, int color) {
+void tPrintChar(char c, uint32 x, uint32 y, int color) {
 	uint16 bpp = fb_request.response->framebuffers[0]->bpp;
 	uint64 pitch = fb_request.response->framebuffers[0]->pitch;
 	uint32 where = x*fb_request.response->framebuffers[0]->bpp/8 + y*fb_request.response->framebuffers[0]->pitch; 
 	unsigned char* screen = FB_ADDRESS;
 
-	PSFfont *font = (PSFfont*)&_binary_assets_Tamsyn8x16r_psf_start;
+	PSFfont *font = style.font;
 
 	int mask[8] = { 1, 2, 4, 8, 16, 32, 64, 128 };
 	unsigned char* glyph = font->headersize + (unsigned char*)font + (c > 0 && (uint32)c < font->numglyph ? c : 0) * font->bytesperglyph;
@@ -57,7 +57,7 @@ void printChar(char c, uint32 x, uint32 y, int color) {
 	}
 }
 
-void printStr(const char* str, uint32 x, uint32 y, int color) {
+void tPrintStr(const char* str, uint32 x, uint32 y, int color) {
 	PSFfont* font = style.font;
 	int max_chars_per_line = (fb_request.response->framebuffers[0]->width - x) / (font->width + 1);
 
@@ -65,17 +65,17 @@ void printStr(const char* str, uint32 x, uint32 y, int color) {
 		if (str[i] == '\n') { j = -1; i--; y += font->height + 1; continue; }
 		else if (j >= max_chars_per_line) { j = -1; y += font->height + 1; continue; }
 
-		printChar(str[i], x + (font->width + 1) * j, y, color);
+		tPrintChar(str[i], x + (font->width + 1) * j, y, color);
 	}
 }
 
-void printInt(int intg, int base, uint32 x, uint32 y, int color) {
+void tPrintInt(int intg, int base, uint32 x, uint32 y, int color) {
 	char buffer[33];
 	char* buf = itoa(intg, buffer, base);
-	printStr((const char*)buf, x, y, color);
+	tPrintStr((const char*)buf, x, y, color);
 }
 
-void printCharW(unsigned char c, uint32 x, uint32 y, int color) {
+void tPrintCharW(unsigned char c, uint32 x, uint32 y, int color) {
 	uint16 bpp = fb_request.response->framebuffers[0]->bpp;
 	uint64 pitch = fb_request.response->framebuffers[0]->pitch;
 	uint32 where = x*fb_request.response->framebuffers[0]->bpp/8 + y*fb_request.response->framebuffers[0]->pitch; 
@@ -98,15 +98,17 @@ void printCharW(unsigned char c, uint32 x, uint32 y, int color) {
 	}
 }
 
-// void printChar(unsigned char c, uint32 x, uint32 y, int color) {
-//     PSFfont *font = (PSFfont*)&_binary_assets_Tamsyn8x16r_psf_start;
+/* 
+void printChar(unsigned char c, uint32 x, uint32 y, int color) {
+	PSFfont *font = (PSFfont*)&_binary_assets_Tamsyn8x16r_psf_start;
 
-//     int mask[8] = { 1, 2, 4, 8, 16, 32, 64, 128 };
-//     unsigned char* glyph = font->headersize + (unsigned char*)font + (c > 0 && c < font->numglyph ? c : 0) * font->bytesperglyph;
+	int mask[8] = { 1, 2, 4, 8, 16, 32, 64, 128 };
+	unsigned char* glyph = font->headersize + (unsigned char*)font + (c > 0 && c < font->numglyph ? c : 0) * font->bytesperglyph;
 
-//     for(int i = 0; i < 16; i++) {
-//         for(int j = 0; j < 8; j++) {
-//             if(glyph[i] & mask[j]) putPixel(FB_ADDRESS, x+j, y+i-12, color);
-//         }
-//     }
-// }
+	for(int i = 0; i < 16; i++) {
+		for(int j = 0; j < 8; j++) {
+			if(glyph[i] & mask[j]) putPixel(FB_ADDRESS, x+j, y+i-12, color);
+		}
+	}
+} 
+*/
