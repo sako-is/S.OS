@@ -5,6 +5,8 @@
 #include <stdbool.h>
 #include <float.h>
 
+#define MB 1024
+
 #define attr(x) __attribute__((x))
 #define asm     __asm__
 #define asmvol  __asm__ __volatile__

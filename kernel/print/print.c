@@ -11,57 +11,59 @@
 #define FORMAT_STATE 2
 #define COLOR_STATE 3
 
-Style style = {
+TerminalContext term_ctx = {
 	.margin = 5,
+	.tab_size = 4,
 	.x = 5,
 	.y = 5,
 	.font = (PSFfont*)&_binary_assets_Tamsyn8x16r_psf_start
 };
 
 void printChar(char c, int color) {
-	if(c == '\n') { style.x = style.margin; style.y += style.font->height + 1; return; }
-	tPrintChar(c, style.x, style.y, color);
-	style.x += style.font->width+1;
+	if(c == '\n') { term_ctx.x = term_ctx.margin; term_ctx.y += term_ctx.font->height + 1; return; }
+	if(c == '\t') { term_ctx.x += term_ctx.tab_size * (term_ctx.font->width + 1); return; }
+	tPrintChar(c, term_ctx.x, term_ctx.y, color);
+	term_ctx.x += term_ctx.font->width+1;
 
 }
 
 void printStr(const char* str, int color) {
-	int max_chars_per_line = (fb_request.response->framebuffers[0]->width - 2*style.margin - style.x) / (style.font->width + 1);
+	int max_chars_per_line = (fb_request.response->framebuffers[0]->width - 2*term_ctx.margin - term_ctx.x) / (term_ctx.font->width + 1);
 
 	for (int i = 0, j = 0; i < (int)strlen(str); i++, j++) {
-		if (str[i] == '\n') { j = -1; style.x = style.margin; style.y += style.font->height + 1; continue; }
-		else if (j >= max_chars_per_line) { j = -1; i--; style.x = style.margin; style.y += style.font->height + 1; continue; }
+		if (str[i] == '\n') { j = -1; term_ctx.x = term_ctx.margin; term_ctx.y += term_ctx.font->height + 1; continue; }
+		else if (j >= max_chars_per_line) { j = -1; i--; term_ctx.x = term_ctx.margin; term_ctx.y += term_ctx.font->height + 1; continue; }
 
-		tPrintChar(str[i], style.x, style.y, color);
-		style.x += style.font->width+1;
+		tPrintChar(str[i], term_ctx.x, term_ctx.y, color);
+		term_ctx.x += term_ctx.font->width+1;
 	}
 }
 
 void printInt(int intg, int base, int color) {
-	int max_chars_per_line = (fb_request.response->framebuffers[0]->width - 2*style.margin - style.x) / (style.font->width + 1);
+	int max_chars_per_line = (fb_request.response->framebuffers[0]->width - 2*term_ctx.margin - term_ctx.x) / (term_ctx.font->width + 1);
 	char buffer[33];
 	char* str = itoa(intg, buffer, base);
 
 	for (int i = 0, j = 0; i < (int)strlen((const char*)str); i++, j++) {
-		if (str[i] == '\n') { j = -1; style.x = style.margin; style.y += style.font->height + 1; continue; }
-		else if (j >= max_chars_per_line) { j = -1; i--; style.x = style.margin; style.y += style.font->height + 1; continue; }
+		if (str[i] == '\n') { j = -1; term_ctx.x = term_ctx.margin; term_ctx.y += term_ctx.font->height + 1; continue; }
+		else if (j >= max_chars_per_line) { j = -1; i--; term_ctx.x = term_ctx.margin; term_ctx.y += term_ctx.font->height + 1; continue; }
 
-		tPrintChar(str[i], style.x, style.y, color);
-		style.x += style.font->width+1;
+		tPrintChar(str[i], term_ctx.x, term_ctx.y, color);
+		term_ctx.x += term_ctx.font->width+1;
 	}
 }
 
 void printUint(uint32 intg, int base, int color) {
-	int max_chars_per_line = (fb_request.response->framebuffers[0]->width - 2*style.margin - style.x) / (style.font->width + 1);
+	int max_chars_per_line = (fb_request.response->framebuffers[0]->width - 2*term_ctx.margin - term_ctx.x) / (term_ctx.font->width + 1);
 	char buffer[33];
 	char* str = uitoa(intg, buffer, base);
 
 	for (int i = 0, j = 0; i < (int)strlen((const char*)str); i++, j++) {
-		if (str[i] == '\n') { j = -1; style.x = style.margin; style.y += style.font->height + 1; continue; }
-		else if (j >= max_chars_per_line) { j = -1; i--; style.x = style.margin; style.y += style.font->height + 1; continue; }
+		if (str[i] == '\n') { j = -1; term_ctx.x = term_ctx.margin; term_ctx.y += term_ctx.font->height + 1; continue; }
+		else if (j >= max_chars_per_line) { j = -1; i--; term_ctx.x = term_ctx.margin; term_ctx.y += term_ctx.font->height + 1; continue; }
 
-		tPrintChar(str[i], style.x, style.y, color);
-		style.x += style.font->width+1;
+		tPrintChar(str[i], term_ctx.x, term_ctx.y, color);
+		term_ctx.x += term_ctx.font->width+1;
 	}
 }
 

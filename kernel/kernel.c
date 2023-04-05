@@ -3,10 +3,26 @@
 #include <kernel/print/print.h>
 #include <kernel/arch/common/hal.h>
 #include <kernel/util/util.h>
+#include <kernel/malloc.h>
 
 #include <limine/limine.h>
 
 #include <defines.h>
+
+char* strcpy(char* destination, const char* source) {
+	if (destination == NULL) return NULL;
+	char *ptr = destination;
+ 
+	while (*source != '\0') {
+		*destination = *source;
+		destination++;
+		source++;
+	}
+ 
+	*destination = '\0';
+ 
+	return ptr;
+}
 
 volatile struct limine_framebuffer_request fb_request = {
 	.id = LIMINE_FRAMEBUFFER_REQUEST,
@@ -22,6 +38,11 @@ void kMain(void) {
 	printLogo; printk("\n");
 
 	initHAL();
-
+	
+	char* str = (char*)malloc(16);
+	strcpy(str, "Testing malloc\n");
+	printk("{s}", str);
+	free(str);
+	
 	Done();
 }

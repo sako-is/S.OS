@@ -46,10 +46,9 @@ isr_stub_%+%1:
 
 	mov rdi, rsp
 	call handleException
-	mov rsp, rax
+	mov rax, rsp
 	
 	popaq
-	add rsp, 16
 	iretq
 %endmacro
 
@@ -61,11 +60,9 @@ isr_stub_%+%1:
 
 	mov rdi, rsp
 	call handleException
-	mov rsp, rax
+	mov rax, rsp
 	
 	popaq
-
-	add rsp, 16
 	iretq
 %endmacro
 

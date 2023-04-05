@@ -44,11 +44,11 @@ static const char* const Exceptions[] = {
 void handleException(Registers* r) {
 	if(r->intn < 32) printk("EXCEPTION!!! {#ff0000.s}\n", Exceptions[r->intn]);
 	else printk("Unhandled Interrupt!!! Interrupt no. {d}\n", r->intn);
-	printk("    r15={u}, r14={u}, r13={u}, r12={u}\n", r->r15, r->r14, r->r13, r->r12);
-	printk("    r11={u}, r10={u}, r9 ={u}, r8 ={u}\n", r->r11, r->r10, r->r9, r->r8);
-	printk("    rbp={u}, rsp={u}, rdi={u}, rsi={u}\n", r->rbp, r->rsp, r->rdi, r->rsi);
-	printk("    rdx={u}, rcx={u}, rbx={u}, rax={u}\n", r->rdx, r->rcx, r->rbx, r->rax);
-	printk("    error code = {u}\n", r->err);
+	printk("	r15={X}, r14={X}, r13={X}, r12={X}\n", r->r15, r->r14, r->r13, r->r12);
+	printk("	r11={X}, r10={X}, r9 ={X}, r8 ={X}\n", r->r11, r->r10, r->r9, r->r8);
+	printk("	rbp={X}, rsp={X}, rdi={X}, rsi={X}\n", r->rbp, r->rsp, r->rdi, r->rsi);
+	printk("	rdx={X}, rcx={X}, rbx={X}, rax={X}\n", r->rdx, r->rcx, r->rbx, r->rax);
+	printk("	interrupt = {u}, error code = {u}\n", r->intn, r->err);
 	asm("hlt");
 }
 
@@ -57,11 +57,11 @@ void setIDTdescriptor(uint8 vector, void* isr, uint8 flags) {
  
 	descriptor->offset1  = (uint64)isr & 0xFFFF;
 	descriptor->selector = 0x08;
-	descriptor->IST      = 0;
-	descriptor->type     = flags;
+	descriptor->IST		 = 0;
+	descriptor->type	 = flags;
 	descriptor->offset2  = ((uint64)isr >> 16) & 0xFFFF;
 	descriptor->offset3  = ((uint64)isr >> 32) & 0xFFFFFFFF;
-	descriptor->zero     = 0;
+	descriptor->zero	 = 0;
 }
 
 void initIDT(void) {

@@ -40,7 +40,7 @@ void tPrintChar(char c, uint32 x, uint32 y, int color) {
 	uint32 where = x*fb_request.response->framebuffers[0]->bpp/8 + y*fb_request.response->framebuffers[0]->pitch; 
 	unsigned char* screen = FB_ADDRESS;
 
-	PSFfont *font = style.font;
+	PSFfont *font = term_ctx.font;
 
 	int mask[8] = { 1, 2, 4, 8, 16, 32, 64, 128 };
 	unsigned char* glyph = font->headersize + (unsigned char*)font + (c > 0 && (uint32)c < font->numglyph ? c : 0) * font->bytesperglyph;
@@ -58,7 +58,7 @@ void tPrintChar(char c, uint32 x, uint32 y, int color) {
 }
 
 void tPrintStr(const char* str, uint32 x, uint32 y, int color) {
-	PSFfont* font = style.font;
+	PSFfont* font = term_ctx.font;
 	int max_chars_per_line = (fb_request.response->framebuffers[0]->width - x) / (font->width + 1);
 
 	for (int i = 0, j = 0; i < (int)strlen(str); i++, j++) {
@@ -81,7 +81,7 @@ void tPrintCharW(unsigned char c, uint32 x, uint32 y, int color) {
 	uint32 where = x*fb_request.response->framebuffers[0]->bpp/8 + y*fb_request.response->framebuffers[0]->pitch; 
 	unsigned char* screen = FB_ADDRESS;
 
-	PSFfont* font = style.font;
+	PSFfont* font = term_ctx.font;
 
 	int mask[8] = { 1, 2, 4, 8, 16, 32, 64, 128 };
 	unsigned char* glyph = font->headersize + (unsigned char*)font + (c > 0 && c < font->numglyph ? c : 0) * font->bytesperglyph;
