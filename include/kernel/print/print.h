@@ -4,9 +4,9 @@
 
 #include <defines.h>
 
-#define ERRORK(message) printk("{fe370c}ERROR: ");   printk(message, 0xfe370c);
-#define WARNK(message)  printk("{fe370c}WARNING: "); printk(message, 0xf3fe0c);
-#define INFOK(message)  printk("{fe370c}INFO: ");    printk(message, 0xf9f7f4);
+#define ERRORK(message) printk("{#ff0000}ERROR: ");   printk(message);
+#define WARNK(message)  printk("{#0000ff}WARNING: "); printk(message);
+#define INFOK(message)  printk("{#00ff00}INFO: ");    printk(message);
 
 typedef struct Style {
 	uint32 margin;
