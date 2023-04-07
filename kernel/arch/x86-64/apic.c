@@ -35,11 +35,7 @@ uintptr getAPICbase() {
 	uint32 eax, edx;
 	cpuGetMSR(IA32_APIC_BASE_MSR, &eax, &edx);
  
-	#ifdef __PHYSICAL_MEMORY_EXTENSION__
-	return (eax & 0xfffff000) | ((edx & 0x0f) << 32);
-	#else
 	return (eax & 0xfffff000);
-	#endif
 }
 
 void initAPIC() {

@@ -4,6 +4,7 @@
 #include <kernel/arch/common/hal.h>
 #include <kernel/util/util.h>
 #include <kernel/malloc.h>
+#include <kernel/arch/common/utilcpu.h>
 
 #include <limine/limine.h>
 
@@ -27,6 +28,13 @@ char* strcpy(char* destination, const char* source) {
  
 	return ptr;
 }
+
+// char* strcpy(char *strDest, const char *strSrc) {
+// 	assert(strDest!=NULL && strSrc!=NULL);
+// 	char *temp = strDest;
+// 	while((*strDest++=*strSrc++) != '\0');
+// 	return temp;
+// }
 
 volatile struct limine_framebuffer_request fb_request = {
 	.id = LIMINE_FRAMEBUFFER_REQUEST,

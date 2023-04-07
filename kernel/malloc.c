@@ -1,6 +1,7 @@
 #include <kernel/malloc.h>
 #include <kernel/print/print.h>
 #include <kernel/util/memory.h>
+#include <kernel/util/util.h>
 
 #include <limits.h>
 #include <defines.h>
@@ -25,16 +26,6 @@
 #define SKIP_MAX_LEVEL 6							/* We have a maximum of 6 levels in our skip lists. */
 
 #define BIN_MAGIC 0xDEFAD00D
-
-#if 1
-#define assert(statement) ((statement) ? (void)0 : __assert_fail(__FILE__, __LINE__, #statement))
-#else
-#define assert(statement) (void)0
-#endif
-
-static void __assert_fail(const char * f, int l, const char * stmt) {
-	printk("assertion failed in {#ff0000.s}:{d} {#ffffff.s}\n", f, l, stmt);
-}
 
 void* malloc(size_t size);
 void* realloc(void* ptr, size_t size);
