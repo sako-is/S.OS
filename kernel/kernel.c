@@ -46,7 +46,7 @@ static void Done(void) {
 }
 
 void kMain(void) {
-	fillScreen(darkblue);
+	fillScreen(term_ctx.bg);
 	printLogo; printk("\n");
 
 	initHAL();

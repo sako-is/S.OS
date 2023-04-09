@@ -13,20 +13,26 @@
 #define COLOR_STATE 3
 
 TerminalContext term_ctx = {
-	.margin = 5,
-	.is_headless = false,
-	.tab_size = 4,
-	.x = 5,
-	.y = 5,
-	.font = (PSFfont*)&_binary_assets_Tamsyn8x16r_psf_start
+	.margin			= 5,
+	.is_headless	= false,
+	.bg				= darkblue,
+	.fg				= white,
+	.tab_size		= 4,
+	.x				= 5,
+	.y				= 5,
+	.font			= (PSFfont*)&_binary_assets_Tamsyn8x16r_psf_start
+};
+
+Stream term_buf = {
+	.buf_len	= 0,
+	.buf		= NULL
 };
 
 void printChar(char c, int color) {
 	if(c == '\n') { term_ctx.x = term_ctx.margin; term_ctx.y += term_ctx.font->height + 1; return; }
 	if(c == '\t') { term_ctx.x += term_ctx.tab_size * (term_ctx.font->width + 1); return; }
 	tPrintChar(c, term_ctx.x, term_ctx.y, color);
-	term_ctx.x += term_ctx.font->width+1;
-
+	term_ctx.x += term_ctx.font->width + 1;
 }
 
 void printStr(const char* str, int color) {
@@ -83,7 +89,7 @@ uint64 xtou64(const char* str) {
 
 void printk(char* fmt, ...) {
 	va_list ap;
-	int color = white;
+	int color = term_ctx.fg;
 
 	void (*printint)(int, int, int);
 	void (*printuint)(uint32, int, int);

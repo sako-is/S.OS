@@ -14,16 +14,20 @@ typedef struct TerminalContext {
 	uint32 margin;
 	uint8 tab_size;
 	bool is_headless;
+	int bg;
+	int fg;
 	uint32 x;
 	uint32 y;
 	PSFfont* font;
 } TerminalContext;
 
-typedef struct Stream {
-	size_t buf_len;
-	va_list ap;
-	char* buf;
-} Stream;
+// typedef struct Stream {
+// 	size_t buf_len;
+// 	va_list ap;
+// 	char* buf;
+// } Stream;
+
+// extern Stream term_buf;
 
 extern TerminalContext term_ctx;
 
