@@ -21,14 +21,17 @@ void initHAL() {
 	initIDT();                  // Interrupts enabled again
 	INFOK("IDT initialized\n");
 
-	// if(!checkAPIC()) {
-		for(int i = 0; i < 8; i++) initPIC(0x08 + i, 0x70 + i);
-		INFOK("PIC Initialized\n");
-	// 	#ifdef __PHYSICAL_MEMORY_EXTENSION__
-	// 	INFOK("Physical Memory Extension exists\n");
-	// 	#endif
-	// 	initAPIC();
-	// 	INFOK("APIC Initialized\n");
-	// }
+	if(!checkAPIC()) {
+		for(int i = 0; i < 8; i++) 
+            initPIC(0x08 + i, 0x70 + i);
+		    
+        INFOK("PIC Initialized\n");
+    } else {
+		#ifdef __PHYSICAL_MEMORY_EXTENSION__
+		    INFOK("Physical Memory Extension exists\n");
+		#endif
+		initAPIC();
+		INFOK("APIC Initialized\n");
+	}
 }
 #endif

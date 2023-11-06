@@ -42,13 +42,13 @@ static const char* const Exceptions[] = {
 };
 
 void handleException(Registers* r) {
-	if(r->intn < 32) printk("EXCEPTION!!! {#ff0000.s}\n", Exceptions[r->intn]);
-	else printk("Unhandled Interrupt!!! Interrupt no. {d}\n", r->intn);
-	printk("    r15={u}, r14={u}, r13={u}, r12={u}\n", r->r15, r->r14, r->r13, r->r12);
-	printk("    r11={u}, r10={u}, r9 ={u}, r8 ={u}\n", r->r11, r->r10, r->r9, r->r8);
-	printk("    rbp={u}, rsp={u}, rdi={u}, rsi={u}\n", r->rbp, r->rsp, r->rdi, r->rsi);
-	printk("    rdx={u}, rcx={u}, rbx={u}, rax={u}\n", r->rdx, r->rcx, r->rbx, r->rax);
-	printk("    error code = {u}\n", r->err);
+	if(r->intn < 32) Print("EXCEPTION!!! {#ff0000.s}\n", Exceptions[r->intn]);
+	else Print("Unhandled Interrupt!!! Interrupt no. {d}\n", r->intn);
+	Print("    r15={u}, r14={u}, r13={u}, r12={u}\n", r->r15, r->r14, r->r13, r->r12);
+	Print("    r11={u}, r10={u}, r9 ={u}, r8 ={u}\n", r->r11, r->r10, r->r9, r->r8);
+	Print("    rbp={u}, rsp={u}, rdi={u}, rsi={u}\n", r->rbp, r->rsp, r->rdi, r->rsi);
+	Print("    rdx={u}, rcx={u}, rbx={u}, rax={u}\n", r->rdx, r->rcx, r->rbx, r->rax);
+	Print("    error code = {u}\n", r->err);
 	asm("hlt");
 }
 

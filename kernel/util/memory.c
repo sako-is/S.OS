@@ -16,13 +16,14 @@ void memzero(void * s, uint64 n) {
 }
 
 void* memset(void *b, int c, int len) {
-	char *b_char = (char *)b;
+	char *bchar = (char *)b;
 
-    if (b == NULL) return NULL;
+    if (b == NULL) 
+        return NULL;
 
-    while(*b_char && len > 0) {
-        *b_char = c;
-        b_char++;
+    while(*bchar && len > 0) {
+        *bchar = c;
+        bchar++;
         len--;
     }
 
@@ -31,14 +32,15 @@ void* memset(void *b, int c, int len) {
 
 void* sbrk(int increment) {
 	static char global_mem[MEMORY_CAPACITY] = {0};
-	static char *p_break = global_mem;
+	static char *pbreak = global_mem;
 
 	char* const limit = global_mem + MEMORY_CAPACITY;
-	char* const original = p_break;
+	char* const original = pbreak;
 
-	if(increment < global_mem - p_break  ||  increment >= limit - p_break) return (void*)-1;
+	if(increment < global_mem - pbreak  ||  increment >= limit - pbreak) 
+        return (void*)-1;
 	
-	p_break += increment;
+	pbreak += increment;
 
 	return original;
 }

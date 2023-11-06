@@ -1,0 +1,48 @@
+"filename", "language", "Shell Script", "Makefile", "Markdown", "C", "LinkerScript", "Properties", "C++", "JSON", "NASM Assembly", "comment", "blank", "total"
+"/home/said/Documents/S.OS/.clangd/compile-commands.json", "JSON", 0, 0, 0, 0, 0, 0, 0, 386, 0, 0, 2, 388
+"/home/said/Documents/S.OS/Makefile", "Makefile", 0, 52, 0, 0, 0, 0, 0, 0, 0, 0, 15, 67
+"/home/said/Documents/S.OS/README.md", "Markdown", 0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 5, 18
+"/home/said/Documents/S.OS/compile_commands.json", "JSON", 0, 0, 0, 0, 0, 0, 0, 386, 0, 0, 2, 388
+"/home/said/Documents/S.OS/include/defines.h", "C++", 0, 0, 0, 0, 0, 0, 65, 0, 0, 0, 9, 74
+"/home/said/Documents/S.OS/include/kernel/arch/common/hal.h", "C++", 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 3
+"/home/said/Documents/S.OS/include/kernel/arch/common/serialports.h", "C++", 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 4, 9
+"/home/said/Documents/S.OS/include/kernel/arch/common/utilcpu.h", "C++", 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 3, 8
+"/home/said/Documents/S.OS/include/kernel/arch/x86-64/apic.h", "C++", 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 3, 11
+"/home/said/Documents/S.OS/include/kernel/arch/x86-64/gdt.h", "C++", 0, 0, 0, 0, 0, 0, 14, 0, 0, 22, 7, 43
+"/home/said/Documents/S.OS/include/kernel/arch/x86-64/idt.h", "C++", 0, 0, 0, 0, 0, 0, 50, 0, 0, 0, 8, 58
+"/home/said/Documents/S.OS/include/kernel/arch/x86-64/pic.h", "C++", 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 9, 34
+"/home/said/Documents/S.OS/include/kernel/kernel.h", "C++", 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 6, 20
+"/home/said/Documents/S.OS/include/kernel/malloc.h", "C++", 0, 0, 0, 0, 0, 0, 7, 0, 0, 6, 3, 16
+"/home/said/Documents/S.OS/include/kernel/print/print.h", "C++", 0, 0, 0, 0, 0, 0, 29, 0, 0, 0, 11, 40
+"/home/said/Documents/S.OS/include/kernel/print/printbasic.h", "C++", 0, 0, 0, 0, 0, 0, 31, 0, 0, 1, 10, 42
+"/home/said/Documents/S.OS/include/kernel/util/memory.h", "C++", 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 3, 9
+"/home/said/Documents/S.OS/include/kernel/util/util.h", "C++", 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 6, 18
+"/home/said/Documents/S.OS/include/limine/limine.h", "C++", 0, 0, 0, 0, 0, 0, 330, 0, 0, 34, 103, 467
+"/home/said/Documents/S.OS/iso/limine.cfg", "Properties", 0, 0, 0, 0, 0, 4, 0, 0, 0, 5, 2, 11
+"/home/said/Documents/S.OS/kernel/arch/x86-64/apic.c", "C", 0, 0, 0, 42, 0, 0, 0, 0, 0, 0, 13, 55
+"/home/said/Documents/S.OS/kernel/arch/x86-64/disablepic.asm", "NASM Assembly", 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 1, 6
+"/home/said/Documents/S.OS/kernel/arch/x86-64/gdt.c", "C", 0, 0, 0, 24, 0, 0, 0, 0, 0, 1, 4, 29
+"/home/said/Documents/S.OS/kernel/arch/x86-64/hal.c", "C", 0, 0, 0, 20, 0, 0, 0, 0, 0, 7, 8, 35
+"/home/said/Documents/S.OS/kernel/arch/x86-64/idt.c", "C", 0, 0, 0, 69, 0, 0, 0, 0, 0, 1, 9, 79
+"/home/said/Documents/S.OS/kernel/arch/x86-64/interrupts.asm", "NASM Assembly", 0, 0, 0, 0, 0, 0, 0, 0, 322, 0, 12, 334
+"/home/said/Documents/S.OS/kernel/arch/x86-64/loadtss.asm", "NASM Assembly", 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 5
+"/home/said/Documents/S.OS/kernel/arch/x86-64/pic.c", "C", 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 9, 41
+"/home/said/Documents/S.OS/kernel/arch/x86-64/serialports.c", "C", 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 6, 18
+"/home/said/Documents/S.OS/kernel/arch/x86-64/util.c", "C", 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 3, 17
+"/home/said/Documents/S.OS/kernel/kernel.c", "C", 0, 0, 0, 44, 0, 0, 0, 0, 0, 0, 13, 57
+"/home/said/Documents/S.OS/kernel/malloc.c", "C", 0, 0, 0, 313, 0, 0, 0, 0, 0, 287, 67, 667
+"/home/said/Documents/S.OS/kernel/print/print.c", "C", 0, 0, 0, 167, 0, 0, 0, 0, 0, 178, 24, 369
+"/home/said/Documents/S.OS/kernel/print/printbasic.c", "C", 0, 0, 0, 98, 0, 0, 0, 0, 0, 15, 23, 136
+"/home/said/Documents/S.OS/kernel/util/memory.c", "C", 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 14, 46
+"/home/said/Documents/S.OS/kernel/util/util.c", "C", 0, 0, 0, 59, 0, 0, 0, 0, 0, 2, 20, 81
+"/home/said/Documents/S.OS/limine.cfg", "Properties", 0, 0, 0, 0, 0, 4, 0, 0, 0, 5, 2, 11
+"/home/said/Documents/S.OS/limine/Makefile", "Makefile", 0, 39, 0, 0, 0, 0, 0, 0, 0, 0, 10, 49
+"/home/said/Documents/S.OS/limine/limine-deploy.c", "C", 0, 0, 0, 805, 0, 0, 0, 0, 0, 17, 144, 966
+"/home/said/Documents/S.OS/limine/limine-enroll-config.c", "C", 0, 0, 0, 120, 0, 0, 0, 0, 0, 0, 24, 144
+"/home/said/Documents/S.OS/limine/limine-hdd.h", "C++", 0, 0, 0, 0, 0, 0, 1387, 0, 0, 0, 1, 1388
+"/home/said/Documents/S.OS/limine/limine-version.c", "C", 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 3, 8
+"/home/said/Documents/S.OS/limine/limine.h", "C++", 0, 0, 0, 0, 0, 0, 338, 0, 0, 35, 106, 479
+"/home/said/Documents/S.OS/linker.ld", "LinkerScript", 0, 0, 0, 0, 32, 0, 0, 0, 0, 8, 10, 50
+"/home/said/Documents/S.OS/randpseudocode.c", "C", 0, 0, 0, 135, 0, 0, 0, 0, 0, 36, 51, 222
+"/home/said/Documents/S.OS/run.sh", "Shell Script", 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3
+"Total", "-", 1, 91, 13, 1991, 32, 8, 2328, 772, 332, 661, 790, 7019

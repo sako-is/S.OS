@@ -11,7 +11,7 @@
 
 #define typeof __typeof
 
-#define Works() printk("Still works at {#ff0000.s}:{d}\n", __FILE__, __LINE__);
+#define Works() Print("Still works at {#ff0000.s}:{d}\n", __FILE__, __LINE__);
 
 typedef float  float32;
 typedef double float64;

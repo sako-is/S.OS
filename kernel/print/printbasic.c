@@ -32,6 +32,8 @@ void printRectangle(int width, int height, uint32 x, uint32 y, int color) {
 
 void fillScreen(int color) {
 	printRectangle(fb_request.response->framebuffers[0]->height, fb_request.response->framebuffers[0]->pitch, 0, 0, color);
+	term_ctx.x = 5;
+	term_ctx.y = 5;
 }
 
 void tPrintChar(char c, uint32 x, uint32 y, int color) {
@@ -62,8 +64,19 @@ void tPrintStr(const char* str, uint32 x, uint32 y, int color) {
 	int max_chars_per_line = (fb_request.response->framebuffers[0]->width - x) / (font->width + 1);
 
 	for (int i = 0, j = 0; i < (int)strlen(str); i++, j++) {
-		if (str[i] == '\n') { j = -1; i--; y += font->height + 1; continue; }
-		else if (j >= max_chars_per_line) { j = -1; y += font->height + 1; continue; }
+		if (str[i] == '\n') { 
+			j = -1; i--; y += font->height + 1; 
+			continue; 
+		} else if (j >= max_chars_per_line) { 
+			j = -1; y += font->height + 1; 
+			continue; 
+		}
+
+		if(y >= fb_request.response->framebuffers[0]->height - font->height) {
+			fillScreen(term_ctx.bg);
+			x = term_ctx.xsetting;
+			y = term_ctx.ysetting;
+		}
 
 		tPrintChar(str[i], x + (font->width + 1) * j, y, color);
 	}

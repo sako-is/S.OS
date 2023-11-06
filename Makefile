@@ -18,7 +18,6 @@ override CFLAGS +=			\
 	-m64					\
 	-target x86_64-none-elf	\
 	-march=x86-64			\
-	-mabi=sysv				\
 	-mcmodel=kernel			\
 	-MMD					\
 	-I.						\
@@ -42,9 +41,9 @@ override HEADER_DEPS := $(CFILES:.c=.d) $(ASFILES:.S=.d)
 
 .PHONY: all
 all: $(KERNEL)
-	cp -v kernel.elf limine.cfg limine/limine.sys limine/limine-cd.bin limine/limine-cd-efi.bin iso/
-	xorriso -as mkisofs -b limine-cd.bin -no-emul-boot -boot-load-size 4 -boot-info-table --efi-boot limine-cd-efi.bin -efi-boot-part --efi-boot-image --protective-msdos-label iso -o image.iso
-	./limine/limine-deploy image.iso
+	cp -v kernel.elf limine.cfg limine/limine-bios.sys limine/limine-bios-cd.bin limine/limine-uefi-cd.bin iso/
+	xorriso -as mkisofs -b limine-bios-cd.bin -no-emul-boot -boot-load-size 4 -boot-info-table --efi-boot limine-uefi-cd.bin -efi-boot-part --efi-boot-image --protective-msdos-label iso -o image.iso
+	./limine/limine bios-install image.iso
 	make clean
 
 $(KERNEL): $(OBJ)

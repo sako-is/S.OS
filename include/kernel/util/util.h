@@ -5,7 +5,7 @@
 #include <kernel/print/print.h>
 
 #if 1
-#define assert(statement) ((statement) ? (void)0 : printk("assertion failed in {#ff0000.s}:{d} {#ffffff.s}\n", __FILE__, __LINE__, statement))
+#define assert(statement) ((statement) ? (void)0 : Print("assertion failed in {#ff0000.s}:{d} {#ffffff.s}\n", __FILE__, __LINE__, statement))
 #else
 #define assert(statement) (void)0
 #endif

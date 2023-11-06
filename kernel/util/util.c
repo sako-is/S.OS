@@ -5,7 +5,8 @@
 
 size_t strlen(const char* str) {
 	size_t len = 0;
-	while(str[len]) len++;
+	while(str[len]) 
+		len++;
 
 	return len;
 }
@@ -42,7 +43,8 @@ char* itoa(int num, char* buffer, int base) {
 		num = num/base;
 	}
 
-	if(is_negative) buffer[i++] = '-';
+	if(is_negative) 
+		buffer[i++] = '-';
 	buffer[i] = '\0'; // Append string terminator
 
 	reverse(buffer, i);

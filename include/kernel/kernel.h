@@ -8,12 +8,12 @@ extern volatile struct limine_framebuffer_request fb_request;
 
 #define FB_ADDRESS fb_request.response->framebuffers[0]->address
 
-#define printLogo	printk("{#fe370c}  ______       ______    ______  \n"); \
-					printk("{#fe370c} /      \\     /      \\  /      \\ \n"); \
-					printk("{#fe370c}/$$$$$$  |   /$$$$$$  |/$$$$$$  |\n");    \
-					printk("{#fe370c}$$ \\__$$/    $$ |  $$ |$$ \\__$$/ \n");  \
-					printk("{#fe370c}$$      \\    $$ |  $$ |$$      \\ \n");  \
-					printk("{#fe370c} $$$$$$  |   $$ |  $$ | $$$$$$  |\n");    \
-					printk("{#fe370c}/  \\__$$ |__ $$ \\__$$ |/  \\__$$ |\n"); \
-					printk("{#fe370c}$$    $$//  |$$    $$/ $$    $$/ \n");    \
-					printk("{#fe370c} $$$$$$/ $$/  $$$$$$/   $$$$$$/  \n");
+#define printLogo()	Print("{#fe0c37}  ______       ______    ______  \n"); \
+					Print("{#fe0c37} /      \\     /      \\  /      \\ \n"); \
+					Print("{#fe0c37}/$$$$$$  |   /$$$$$$  |/$$$$$$  |\n");    \
+					Print("{#fe0c37}$$ \\__$$/    $$ |  $$ |$$ \\__$$/ \n");  \
+					Print("{#fe0c37}$$      \\    $$ |  $$ |$$      \\ \n");  \
+					Print("{#fe0c37} $$$$$$  |   $$ |  $$ | $$$$$$  |\n");    \
+					Print("{#fe0c37}/  \\__$$ |__ $$ \\__$$ |/  \\__$$ |\n"); \
+					Print("{#fe0c37}$$    $$//  |$$    $$/ $$    $$/ \n");    \
+					Print("{#fe0c37} $$$$$$/ $$/  $$$$$$/   $$$$$$/  \n");
